@@ -1,0 +1,40 @@
+<body>
+<form id="calc">
+  <h2>
+  Multiple Choice Section
+  </h2>
+  <label for="mcq">Amount between 0 and 60</label> 
+  <input id="mcq" name= "mcq" type="number" min="0" max="60">
+  <br>
+  <h2>
+  FRQ Section
+  </h2>
+  <label for="frq1">Amount between 0 and 7</label> 
+  <input id="frq1" name= "frq1" type="number" min="0" max="7">
+  <br>
+  <label for="frq2">Amount between 0 and 7</label> 
+  <input id="frq2" name= "frq2" type="number" min="0" max="7">
+  <br>
+  <label for="frq3">Amount between 0 and 7</label> 
+  <input id="frq3" name= "frq1" type="number" min="0" max="7">
+  <br>
+  <br>
+  <input id="submit" type="submit" onclick="calcScore()">
+</form>
+</body>
+<script>
+function calcScore() {
+	let form = document.getElementById("calc");
+  let scores = {
+  	mcq: 0,
+    frq: 0
+  };
+  for (let i = 0; i < (form.elements.length - 1); ++i) {
+		i == 0 ? scores.mcq = parseInt(form.elements[i].value) : scores.frq = scores.frq + parseInt(form.elements[i].value);
+  }
+  let comp = (scores.frq * 2.8571) + scores.mcq;
+  let final;
+  comp <= 47 ? final = 1 : comp <= 58 ? final = 2 : comp <= 70 ? final = 3 : comp <= 84 ? final = 4 : final = 5;
+  window.alert(`Your composite score is: ${comp}\nYour final score is a: ${final}`);
+}
+</script>
